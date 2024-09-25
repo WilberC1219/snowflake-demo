@@ -13,7 +13,6 @@ app.get("/", function(request, response) {
 app.post("/snowflake-auth", function (request, response) {
   
   const {key, accountIdentifier, user } = request.body;
-  //let privateKeyFile = fs.readFileSync(`./test_keys/${key}.p8`);  // read rsa key file
   let privateKeyEnv = process.env[key] || "";
   let privateKeyObject = crypto.createPrivateKey({ key: privateKeyEnv, format: 'pem' });
   let privateKey = privateKeyObject.export({ format: 'pem', type: 'pkcs8' }); // convert key to pkcs8 pem format
